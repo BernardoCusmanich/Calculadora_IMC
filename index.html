@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora IMC</title>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.1.0/build/pure-min.css" integrity="sha384-yHIFVG6ClnONEA5yB5DJXfW2/KC173DIQrYoZMEtBvGzmf0PKiGyNEqe9N6BNDBH" crossorigin="anonymous">
+    <style>
+        body{
+            margin-left: 20%;
+            margin-right: 20%;
+        }
+    </style>
+</head>
+<body>
+    <form name="formMedia" class="pure-form pure-form-stacked">
+        <fieldset>
+            <legend>Calculadora IMC</legend>
+            <label for="iNome">Nome</label>
+            <input id="iNome" type="text" name="nome" placeholder="Nome" required>
+            <label for="iPeso">Peso</label>
+            <input type="number" name="peso" placeholder="Digite seu peso" id="iAv1" step="0.1">
+            <label for="iAltura">Altura</label>
+            <input type="number" name="altura" placeholder="Digite sua altura" id="iAv2" step="0.1">
+            <input type="button" class="pure-button pure-button-primary" onclick="calc()" value="Calcular">
+        </fieldset>
+    </form>
+    <h2 id="resultado"></h2>
+    <script>
+        function calc(){
+            var nome = document.querySelector("input[name=nome]").value;
+            var peso = document.querySelector("input[name=peso]").value;
+            var altura = document.querySelector("input[name=altura]").value;
+            var imc = peso/(altura*altura);
+            if(imc >= 30){
+                document.querySelector("#resultado").innerHTML = nome + ": Obesidade";
+                document.querySelector("#resultado").style.color = "red";
+            }else if(imc >= 25 && imc < 30){
+                document.querySelector("#resultado").innerHTML = nome + ": Sobrepeso";
+                document.querySelector("#resultado").style.color = "orange";
+            }else if(imc >= 18.5 && imc < 25){
+                document.querySelector("#resultado").innerHTML = nome + ": Peso normal";
+                document.querySelector("#resultado").style.color = "white";
+            }else if(imc >= 17 && imc < 18.5){
+                document.querySelector("#resultado").innerHTML = nome + ": Magreza";
+                document.querySelector("#resultado").style.color = "yellow";
+            }else if(imc >= 0 && imc < 17){
+                document.querySelector("#resultado").innerHTML = nome + ": Desnutrição";
+                document.querySelector("#resultado").style.color = "blue";
+            }
+        }
+    </script>
+</body>
+</html>
